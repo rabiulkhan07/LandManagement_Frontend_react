@@ -20,9 +20,18 @@ const Login = () => {
 
     const formSubmit = (e) => {
         e.preventDefault();
-        alert(
-            `my ID : ${user.userName}. my pass : ${user.password}`
-            );
+
+        
+        
+        fetch('http://127.0.0.1:8000/user',{
+            method : 'GET',
+            headers : {'Content-type':'application/json'},
+            body :JSON.stringify(e.target.value)
+        }).then(
+            data => {
+                console.log(data);
+            }
+        ).catch( error => console.error(error))
     };
 
     return (
